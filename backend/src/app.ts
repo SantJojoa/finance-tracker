@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import transactionRoutes from './routes/transaction.routes'
+import categoryRoutes from './routes/category.routes'
 
 const app = express()
 
@@ -16,6 +17,6 @@ app.get('/health', (req, res) => {
 //Routes
 // TODO: Agregar rutas aquí
 app.use('/api/transactions', transactionRoutes)
-
+app.use('/api/categories', categoryRoutes)
 
 export default app

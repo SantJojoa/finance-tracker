@@ -12,7 +12,7 @@ export class TransactionService {
 
 
     async create(data: {
-        amount: number
+        amount: number,
         type: 'income' | 'expense',
         description?: string,
         currency: string,
