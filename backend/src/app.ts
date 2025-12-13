@@ -1,5 +1,6 @@
 import express from 'express'
 import cors from 'cors'
+import transactionRoutes from './routes/transaction.routes'
 
 const app = express()
 
@@ -12,6 +13,9 @@ app.get('/health', (req, res) => {
     res.json({ status: 'ok', message: 'API is running' })
 })
 
+//Routes
 // TODO: Agregar rutas aquí
+app.use('/api/transactions', transactionRoutes)
+
 
 export default app

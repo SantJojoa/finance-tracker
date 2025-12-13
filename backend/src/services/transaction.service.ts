@@ -7,6 +7,7 @@ export class TransactionService {
                 userId,
             },
         })
+        return transactions
     }
 
 
@@ -46,7 +47,7 @@ export class TransactionService {
                 }
             }
         })
-
+        return transactions
 
     }
 
@@ -56,6 +57,7 @@ export class TransactionService {
                 id: userId,
             },
         })
+        return transactions
     }
 
     async delete(id: string) {
@@ -64,6 +66,7 @@ export class TransactionService {
                 id,
             }
         })
+        return transactions
     }
 }
 
