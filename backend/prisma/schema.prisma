@@ -1,0 +1,155 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum TransactionType {
+  income
+  expense
+}
+
+enum CategoryType {
+  income
+  expense
+}
+
+enum PaymentMethodType {
+  cash
+  debit_card
+  digital_wallet
+  credit_card
+}
+
+enum Frequency {
+  daily
+  weekly
+  biweekly
+  monthly
+  yearly
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  transactions          Transaction[]
+  categories            Category[]
+  paymentMethods        PaymentMethod[]
+  accounts              Account[]
+  tags                  Tag[]
+  recurringTransactions RecurringTransaction[]
+}
+
+model Account {
+  id      String @id @default(uuid())
+  name    String
+  balance Float  @default(0)
+  userId  String
+
+  user                  User                   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions          Transaction[]
+  recurringTransactions RecurringTransaction[]
+
+  @@unique([userId, name])
+}
+
+model Category {
+  id        String       @id @default(uuid())
+  name      String
+  type      CategoryType
+  color     String?
+  icon      String?
+  userId    String
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+
+  user                  User                   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions          Transaction[]
+  recurringTransactions RecurringTransaction[]
+
+  @@unique([userId, name])
+}
+
+model PaymentMethod {
+  id        String            @id @default(uuid())
+  name      String
+  type      PaymentMethodType
+  userId    String
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+
+  user                  User                   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions          Transaction[]
+  recurringTransactions RecurringTransaction[]
+
+  @@unique([userId, name])
+}
+
+model Tag {
+  id        String   @id @default(uuid())
+  name      String
+  userId    String
+  createdAt DateTime @default(now())
+
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions Transaction[] @relation("TransactionTags")
+
+  @@unique([userId, name])
+}
+
+model Transaction {
+  id              String          @id @default(uuid())
+  amount          Float
+  type            TransactionType
+  description     String?
+  currency        String          @default("COP")
+  date            DateTime        @default(now())
+  userId          String
+  categoryId      String
+  paymentMethodId String
+  accountId       String?
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  category      Category      @relation(fields: [categoryId], references: [id])
+  paymentMethod PaymentMethod @relation(fields: [paymentMethodId], references: [id])
+  account       Account?      @relation(fields: [accountId], references: [id])
+  tags          Tag[]         @relation("TransactionTags")
+
+  @@index([userId, date])
+}
+
+model RecurringTransaction {
+  id              String          @id @default(uuid())
+  userId          String
+  amount          Float
+  type            TransactionType
+  description     String?
+  categoryId      String
+  paymentMethodId String
+  accountId       String?
+  frequency       Frequency
+  nextRun         DateTime
+  isActive        Boolean         @default(true)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  category      Category      @relation(fields: [categoryId], references: [id])
+  paymentMethod PaymentMethod @relation(fields: [paymentMethodId], references: [id])
+  account       Account?      @relation(fields: [accountId], references: [id])
+}
