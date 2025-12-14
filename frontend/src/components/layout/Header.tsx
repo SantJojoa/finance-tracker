@@ -14,7 +14,7 @@ export default function Header() {
                         <div className="size-8 flex items-center justify-center rounded-lg bg-primary/20 text-primary">
                             <Wallet className="size-5" />
                         </div>
-                        <h2 className="text-xl font-bold">Finance Tracker</h2>
+                        <h2 className="text-xl font-bold">Monely</h2>
                     </div>
 
                     {/* Desktop Navigation COLOCAR HIDDEN EN NAV*/}

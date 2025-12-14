@@ -11,7 +11,7 @@ export default function Footer() {
                             <div className="size-6 flex items-center justify-center rounded-lg bg-primary/20 text-primary">
                                 <Wallet className="size-4" />
                             </div>
-                            <h2 className="text-lg font-bold">Finance Tracker</h2>
+                            <h2 className="text-lg font-bold">Monely</h2>
                         </div>
                         <p className="text-text-dim text-sm leading-relaxed">Ayudamos a las personas a transformar su relación con el dinero usando tecnología y educación financiera.
                         </p>
@@ -89,7 +89,7 @@ export default function Footer() {
             <div className="w-full border-t border-dark-border py-4">
                 <Container>
                     <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-text-dim">
-                        <p>© {new Date().getFullYear()} Finance Tracker. All rights reserved.</p>
+                        <p>© {new Date().getFullYear()} Monely. All rights reserved.</p>
                         <div className="flex gap-6">
                             <a href="#privacy" className="hover:text-primary transition-colors">
                                 Política de privacidad                            </a>
