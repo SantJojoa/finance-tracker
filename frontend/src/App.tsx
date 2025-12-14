@@ -2,6 +2,7 @@ import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
 import HeroSection from './components/landing/HeroSection'
 import StatsSection from './components/landing/StatsSection'
+import FeaturesSection from './components/landing/FeaturesSection'
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
       <main className='flex-1'>
         <HeroSection />
         <StatsSection />
+        <FeaturesSection />
       </main>
       <Footer />
     </div>
