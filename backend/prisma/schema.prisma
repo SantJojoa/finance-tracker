@@ -83,6 +83,7 @@ model Category {
   @@unique([userId, name])
 }
 
+//TODO: CREATE CONTROLLER AND SERVICE
 model PaymentMethod {
   id        String            @id @default(uuid())
   name      String
@@ -98,6 +99,7 @@ model PaymentMethod {
   @@unique([userId, name])
 }
 
+//TODO: CREATE CONTROLLER AND SERVICE
 model Tag {
   id        String   @id @default(uuid())
   name      String
@@ -133,6 +135,7 @@ model Transaction {
   @@index([userId, date])
 }
 
+//TODO: CREATE CONTROLLER AND SERVICE
 model RecurringTransaction {
   id              String          @id @default(uuid())
   userId          String
