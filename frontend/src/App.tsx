@@ -3,6 +3,7 @@ import Footer from './components/layout/Footer'
 import HeroSection from './components/landing/HeroSection'
 import StatsSection from './components/landing/StatsSection'
 import FeaturesSection from './components/landing/FeaturesSection'
+import ChartSection from './components/landing/ChartSection'
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
         <HeroSection />
         <StatsSection />
         <FeaturesSection />
+        <ChartSection />
       </main>
       <Footer />
     </div>
