@@ -1,22 +1,66 @@
 import { useState, type FormEvent } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Mail, Lock, ArrowRight } from 'lucide-react'
 import Button from '@/components/Button'
 import Input from '@/components/ui/Input'
 import Container from '@/components/ui/Container'
 
+import { useAuth } from '@/context/AuthContext'
+
 export default function Login() {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const navigate = useNavigate()
+
     const [isLoading, setIsLoading] = useState(false)
+    const { signIn } = useAuth()
+    const [apiError, setApiError] = useState('')
+    const [errors, setErrors] = useState<Record<string, string>>({})
+    const [formData, setFormdata] = useState({
+        email: '',
+        password: ''
+    })
+
+
+
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target
+        setFormdata(prev => ({ ...prev, [name]: value }))
+        setErrors(prev => ({ ...prev, [name]: '' }))
+        setApiError('')
+    }
+
+    const validateForm = () => {
+        const newErrors: Record<string, string> = {}
+        if (!formData.email.trim()) {
+            newErrors.email = 'El correo electrónico es requerido'
+        }
+
+        if (!formData.password.trim()) {
+            newErrors.password = 'La contraseña es requerida'
+        }
+
+        setErrors(newErrors)
+        return Object.keys(newErrors).length === 0
+    }
+
+
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
+        if (!validateForm()) return
+
         setIsLoading(true)
+        setApiError('')
 
-        // TODO: Implementar autenticación con Supabase
-        console.log('Login:', { email, password })
-
+        const { error } = await signIn(formData.email, formData.password)
+        if (error) {
+            setApiError(error.message)
+            setIsLoading(false)
+        } else {
+            alert('Bienvenido')
+            navigate('/dashboard')
+        }
+        console.log('Login:', { formData })
         setTimeout(() => setIsLoading(false), 1000)
     }
 
@@ -40,15 +84,23 @@ export default function Login() {
 
                     {/* Login Form Card */}
                     <div className="bg-dark-surface border border-dark-border rounded-xl p-6 sm:p-8 backdrop-blur-xl shadow-lg">
+                        {apiError && (
+                            <div className="mb-5 p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-500 text-sm">
+                                {apiError}
+                            </div>
+                        )}
                         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                             {/* Email */}
                             <Input
+                                name='email'
                                 type="email"
+                                autoComplete='email'
                                 label="Correo Electrónico"
                                 placeholder="nombre@ejemplo.com"
                                 icon={<Mail className="size-5" />}
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                value={formData.email}
+                                onChange={handleChange}
+                                error={errors.email}
                                 required
                             />
 
@@ -64,13 +116,15 @@ export default function Login() {
                                     </Link>
                                 </div>
                                 <Input
+                                    name='password'
                                     autoComplete='current-password'
                                     className=' cursor-pointer'
                                     type="password"
                                     placeholder="Ingresa tu contraseña"
                                     icon={<Lock className="size-5" />}
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    error={errors.password}
                                     required
                                 />
                             </div>
@@ -91,11 +145,11 @@ export default function Login() {
 
                             {/* Divider */}
                             <div className="relative flex py-2 items-center">
-                                <div className="flex-grow border-t border-dark-border" />
-                                <span className="flex-shrink mx-4 text-xs font-medium text-text-dim uppercase tracking-wider">
+                                <div className="grow border-t border-dark-border" />
+                                <span className="shrink mx-4 text-xs font-medium text-text-dim uppercase tracking-wider">
                                     O continuar con
                                 </span>
-                                <div className="flex-grow border-t border-dark-border" />
+                                <div className="grow border-t border-dark-border" />
                             </div>
 
                             {/* Social Login Buttons */}

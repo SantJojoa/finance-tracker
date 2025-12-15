@@ -11,6 +11,8 @@ import Login from './pages/Login.tsx'
 import Layout from './components/layout/Layout.tsx'
 import LandingPage from './pages/LandingPage.tsx'
 import Register from './pages/Register.tsx'
+import ProtectedRoute from './components/ProtectedRoute.tsx'
+import Dashboard from './pages/Dashboard.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -22,6 +24,17 @@ createRoot(document.getElementById('root')!).render(
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             {/* Aquí irán las demás rutas */}
+
+            <Route
+              path='/dashboard'
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            >
+
+            </Route>
           </Route>
         </Routes>
       </AuthProvider>
