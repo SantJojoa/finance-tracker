@@ -1,12 +1,14 @@
 import { useState, type FormEvent } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Mail, Lock, User, ArrowRight } from 'lucide-react'
+import { useAuth } from '@/context/AuthContext'
 import Button from '@/components/Button'
 import Input from '@/components/ui/Input'
 import Container from '@/components/ui/Container'
 
 export default function Register() {
     const navigate = useNavigate()
+    const { signUp, signInWithGoogle } = useAuth()
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -16,6 +18,7 @@ export default function Register() {
 
     const [errors, setErrors] = useState<Record<string, string>>({})
     const [isLoading, setIsLoading] = useState(false)
+    const [apiError, setApiError] = useState('')
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
@@ -24,6 +27,7 @@ export default function Register() {
         if (errors[name]) {
             setErrors(prev => ({ ...prev, [name]: '' }))
         }
+        setApiError('')
     }
 
     const validateForm = () => {
@@ -56,15 +60,31 @@ export default function Register() {
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
         if (!validateForm()) return
-        setIsLoading(true)
 
-        //TODO: Implement Register user
+
+        setIsLoading(true)
+        setApiError('')
+
+        const { error } = await signUp(formData.email, formData.password, formData.name)
+
+        if (error) {
+            setApiError(error.message)
+            setIsLoading(false)
+        } else {
+            alert('Revisa tu correo para confirmar tu cuenta')
+            navigate('/login')
+        }
+
         console.log(formData)
 
         setTimeout(() => {
             setIsLoading(false)
             navigate('/login')
         }, 1000)
+    }
+
+    const handleGoogleSignUp = async () => {
+        await signInWithGoogle()
     }
 
 
@@ -85,6 +105,11 @@ export default function Register() {
                     </div>
 
                     <div className='bg-dark-surface border border-dark-border rounded-xl p-6 sm:p-8 backdrop-blur-xl shadow-lg'>
+                        {apiError && (
+                            <div className="mb-5 p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-500 text-sm">
+                                {apiError}
+                            </div>
+                        )}
                         <form onSubmit={handleSubmit} className='flex flex-col gap-5'>
                             <Input
                                 type="text"
@@ -99,6 +124,7 @@ export default function Register() {
                             />
 
                             <Input
+                                autoComplete='email'
                                 type="email"
                                 name="email"
                                 label="Correo Electrónico"
@@ -111,6 +137,7 @@ export default function Register() {
                             />
 
                             <Input
+                                autoComplete='new-password'
                                 type="password"
                                 name="password"
                                 label="Contraseña"
@@ -124,6 +151,7 @@ export default function Register() {
                             />
 
                             <Input
+                                autoComplete='new-password'
                                 type="password"
                                 name="confirmPassword"
                                 label="Confirmar Contraseña"
@@ -175,6 +203,7 @@ export default function Register() {
 
                                 <div className='grid grid-cols-2 gap-4'>
                                     <button
+                                        onClick={handleGoogleSignUp}
                                         type='button'
                                         className='flex items-center justify-center gap-2 h-11 rounded-lg border border-dark-border bg-dark-surface hover:bg-dark-elevated transition-colors text-sm font-semibold'
                                     >

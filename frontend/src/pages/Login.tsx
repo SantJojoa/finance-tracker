@@ -64,6 +64,7 @@ export default function Login() {
                                     </Link>
                                 </div>
                                 <Input
+                                    autoComplete='current-password'
                                     className=' cursor-pointer'
                                     type="password"
                                     placeholder="Ingresa tu contraseña"
