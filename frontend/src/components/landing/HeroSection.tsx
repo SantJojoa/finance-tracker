@@ -1,6 +1,7 @@
 import { ArrowRight, Play } from 'lucide-react'
 import Button from '@/components/Button'
 import Container from '@/components/ui/Container'
+import { Link } from 'react-router-dom'
 
 export default function HeroSection() {
     return (
@@ -35,16 +36,19 @@ export default function HeroSection() {
 
                         {/* CTA Buttons */}
                         <div className="flex flex-col sm:flex-row gap-4 items-center justify-center lg:justify-start">
-                            <Button
-                                variant="primary"
-                                size="lg"
-                                className="w-full sm:w-auto"
-                            >
-                                <span className="flex items-center gap-2">
-                                    Empieza Gratis
-                                    <ArrowRight className="size-5" />
-                                </span>
-                            </Button>
+                            <Link to='/register'>
+                                <Button
+                                    variant="primary"
+                                    size="lg"
+                                    className="w-full sm:w-auto"
+                                >
+
+                                    <span className="flex items-center gap-2">
+                                        Empieza Gratis
+                                        <ArrowRight className="size-5" />
+                                    </span>
+                                </Button>
+                            </Link>
 
                             <button className="group flex items-center justify-center gap-3 rounded-lg h-12 px-8 bg-dark-surface border border-dark-border hover:border-primary/50 transition-all text-base font-bold w-full sm:w-auto backdrop-blur-xl">
                                 <div className="size-10 rounded-full bg-primary/20 flex items-center justify-center group-hover:bg-primary transition-colors">

@@ -1,6 +1,7 @@
 import { ArrowRight } from 'lucide-react'
 import Container from '@/components/ui/Container'
 import Button from '@/components/Button'
+import { Link } from 'react-router-dom'
 
 export default function CTASection() {
     return (
@@ -26,16 +27,18 @@ export default function CTASection() {
                         {/* Primary CTA with glow effect */}
                         <div className="relative group">
                             <div className="absolute -inset-1 bg-primary rounded-lg blur opacity-40 group-hover:opacity-75 transition duration-300 animate-pulse-slow" />
-                            <Button
-                                variant="primary"
-                                size="lg"
-                                className="relative w-full sm:w-auto min-w-[200px]"
-                            >
-                                <span className="flex items-center gap-2">
-                                    Comienza Ahora
-                                    <ArrowRight className="size-5" />
-                                </span>
-                            </Button>
+                            <Link to="/register">
+                                <Button
+                                    variant="primary"
+                                    size="lg"
+                                    className="relative w-full sm:w-auto min-w-[200px]"
+                                >
+                                    <span className="flex items-center gap-2">
+                                        Comienza Ahora
+                                        <ArrowRight className="size-5" />
+                                    </span>
+                                </Button>
+                            </Link>
                         </div>
 
                         {/* Secondary CTA */}

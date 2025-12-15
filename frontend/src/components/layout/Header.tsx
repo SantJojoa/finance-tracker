@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Menu, X, Wallet } from 'lucide-react'
 import Container from "../ui/Container";
 import Button from '../Button'
+import { Link } from 'react-router-dom'
 export default function Header() {
 
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -27,9 +28,11 @@ export default function Header() {
 
                     {/*CTA*/}
                     <div className="flex items-center gap-4">
-                        <Button variant="primary" size="md" className="hidden sm:flex">
-                            Registrarse
-                        </Button>
+                        <Link to='/register'>
+                            <Button variant="primary" size="md" className="hidden sm:flex" >
+                                Registrarse
+                            </Button>
+                        </Link>
 
                         {/* Mobile Menu*/}
 
