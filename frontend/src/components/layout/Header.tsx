@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom'
 
-import { Menu, X, Wallet, LogOut, User as UserIcon, User } from 'lucide-react'
+import { Menu, X, Wallet, LogOut, User as UserIcon } from 'lucide-react'
 import { useAuth } from "@/context/AuthContext";
 
 import Container from "../ui/Container";
@@ -14,7 +14,7 @@ export default function Header() {
 
     const handleSignOut = async () => {
         await signOut()
-        navigate('')
+        navigate('/')
     }
 
     return (
