@@ -1,4 +1,6 @@
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts'
+import type { TooltipProps } from 'recharts'
+
 import GlassCard from '@/components/ui/GlassCard'
 
 interface CashFlowData {
@@ -9,6 +11,12 @@ interface CashFlowData {
 
 interface CashFlowChartProps {
     data: CashFlowData[]
+}
+
+const tooltipFormatter: TooltipProps<string | number, string>['formatter'] = (value) => {
+    const numericValue = typeof value === 'number' ? value : Number(value)
+    const formatted = Number.isFinite(numericValue) ? numericValue.toFixed(2) : '-'
+    return [`$${formatted}`, '']
 }
 
 export default function CashFlowChart({ data }: CashFlowChartProps) {
@@ -52,7 +60,8 @@ export default function CashFlowChart({ data }: CashFlowChartProps) {
                                 borderRadius: '8px',
                                 color: '#fff'
                             }}
-                            labelFormatter={(value: number) => [`$${value.toFixed(2)}`, '']}
+                            formatter={tooltipFormatter}
+                            labelFormatter={(label) => label}
                         />
                         <Legend />
                         <Line

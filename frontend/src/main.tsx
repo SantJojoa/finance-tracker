@@ -13,6 +13,7 @@ import LandingPage from './pages/LandingPage.tsx'
 import Register from './pages/Register.tsx'
 import ProtectedRoute from './components/ProtectedRoute.tsx'
 import Dashboard from './pages/Dashboard.tsx'
+import Transactions from './pages/Transactions.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -33,8 +34,17 @@ createRoot(document.getElementById('root')!).render(
                 </ProtectedRoute>
               }
             >
-
             </Route>
+            <Route
+              path='/transactions'
+              element={
+                <ProtectedRoute>
+                  <Transactions />
+                </ProtectedRoute>
+              }
+            >
+            </Route>
+
           </Route>
         </Routes>
       </AuthProvider>

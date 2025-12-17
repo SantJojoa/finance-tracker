@@ -68,6 +68,8 @@ export default function TransactionFilters({
             {showFilters && (
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 p-4 bg-dark-surface border border-dark-border rounded-xl'>
                     <select
+                        value={filters.type}
+                        onChange={(e) => handleFilterChange('type', e.target.value)}
                         className='h-12 px-4 rounded-lg bg-dark-elevated border border-dark-border text-white focus:outline-none focus:ring-2 focus:ring-primary/50'
                     >
                         <option value="">Tipos</option>

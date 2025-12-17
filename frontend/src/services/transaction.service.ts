@@ -54,14 +54,32 @@ export const transactionService = {
             query = query.lte('date', filters.dateTo)
         }
 
-        if (filters?.search) {
-            query = query.ilike('description', `%${filters.search}%`)
-        }
-
         const { data, error } = await query
 
         if (error) throw error
-        return data || []
+
+        if (!data) return []
+
+        if (filters?.search) {
+            const term = filters.search.trim().toLowerCase()
+            if (!term) return data
+
+            return data.filter((transaction) => {
+                const searchableValues = [
+                    transaction.description || '',
+                    transaction.category?.name || '',
+                    transaction.account?.name || '',
+                    transaction.paymentMethod?.name || '',
+                    transaction.amount?.toString() || '',
+                ]
+
+                return searchableValues.some((value) =>
+                    value.toLowerCase().includes(term)
+                )
+            })
+        }
+
+        return data
     },
 
     async getById(id: string, userId: string) {

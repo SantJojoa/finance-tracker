@@ -118,7 +118,7 @@ export const dashboardService = {
 
     async getRecentTransactions(userId: string, limit = 10) {
         const { data: transactions } = await supabase
-            .from('Transactions')
+            .from('Transaction')
             .select(`
         *,
         category:Category(name, icon, color),
