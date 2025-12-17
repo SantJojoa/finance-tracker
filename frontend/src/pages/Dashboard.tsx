@@ -9,7 +9,6 @@ import QuickActions from '@/components/dashboard/QuickActions'
 import BudgetsList from '@/components/dashboard/BudgetsList'
 import RecentTransactions from '@/components/dashboard/RecentTransactions'
 import Button from '@/components/Button'
-import TransitionList from '@/components/transactions/TransactionsList'
 
 
 export default function Dashboard() {
@@ -70,7 +69,6 @@ export default function Dashboard() {
     return (
         <div className='py-8'>
             <Container className='max-w-[1400px]'>
-                <TransitionList transactions={[{ id: '40', amount: 100, type: 'income', date: '2025-12-16', category: { name: 'Salary' }, paymentMethod: { name: 'Cash' } }]} onEdit={() => { }} onDelete={() => { }} />
                 <div className='space-y-8'>
                     <div className='flex flex-wrap justify-between gap-4 items-start'>
                         <div>
