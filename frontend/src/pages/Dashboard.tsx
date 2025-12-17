@@ -9,6 +9,7 @@ import QuickActions from '@/components/dashboard/QuickActions'
 import BudgetsList from '@/components/dashboard/BudgetsList'
 import RecentTransactions from '@/components/dashboard/RecentTransactions'
 import Button from '@/components/Button'
+import TransactionFilters from '@/components/transactions/TransactionFilters'
 
 
 export default function Dashboard() {
