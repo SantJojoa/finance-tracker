@@ -7,7 +7,7 @@ export default function () {
         {
             icon: Plus,
             label: 'Añadir transacción',
-            href: '/transactions/new',
+            href: '/transactions?new=true',
         },
         {
             icon: ArrowRightLeft,

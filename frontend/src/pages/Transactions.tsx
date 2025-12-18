@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
+
 import { Plus } from 'lucide-react'
 import { useAuth } from '@/context/AuthContext'
 import { transactionService } from '@/services/transaction.service'
@@ -15,6 +17,8 @@ import TransactionList from '@/components/transactions/TransactionList'
 export default function Transactions() {
 
     const { user } = useAuth()
+    const [searchParams, setSearchParams] = useSearchParams()
+
     const [loading, setLoading] = useState(true)
     const [transactions, setTransactions] = useState<any[]>([])
     const [categories, setCategories] = useState<any[]>([])
@@ -118,6 +122,15 @@ export default function Transactions() {
         setIsModalOpen(false)
         setSelectedTransaction(null)
     }
+
+    useEffect(() => {
+        if (searchParams.get('new') === 'true') {
+            handleCreateNew()
+            const params = new URLSearchParams(searchParams)
+            params.delete('new')
+            setSearchParams(params, { replace: true })
+        }
+    }, [searchParams, setSearchParams])
 
     return (
         <div className='py-8'>
