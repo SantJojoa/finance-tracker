@@ -21,19 +21,19 @@ export default function ChartSection() {
                         {/* Feature List */}
                         <ul className="flex flex-col gap-3 mt-2">
                             <li className="flex items-center gap-3">
-                                <div className="size-5 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                                <div className="size-5 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
                                     <Check className="size-3 text-primary" strokeWidth={3} />
                                 </div>
                                 <span className="text-base">Intervalos de tiempo personalizados</span>
                             </li>
                             <li className="flex items-center gap-3">
-                                <div className="size-5 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                                <div className="size-5 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
                                     <Check className="size-3 text-primary" strokeWidth={3} />
                                 </div>
                                 <span className="text-base">Detalle por categorías</span>
                             </li>
                             <li className="flex items-center gap-3">
-                                <div className="size-5 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                                <div className="size-5 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
                                     <Check className="size-3 text-primary" strokeWidth={3} />
                                 </div>
                                 <span className="text-base">Reportes exportables (PDF/CSV)</span>

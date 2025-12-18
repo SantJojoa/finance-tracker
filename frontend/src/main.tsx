@@ -14,6 +14,7 @@ import Register from './pages/Register.tsx'
 import ProtectedRoute from './components/ProtectedRoute.tsx'
 import Dashboard from './pages/Dashboard.tsx'
 import Transactions from './pages/Transactions.tsx'
+import Categories from './pages/Cateogories.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -43,6 +44,17 @@ createRoot(document.getElementById('root')!).render(
                 </ProtectedRoute>
               }
             >
+            </Route>
+
+            <Route
+              path='/categories'
+              element={
+                <ProtectedRoute>
+                  <Categories />
+                </ProtectedRoute>
+              }
+            >
+
             </Route>
 
           </Route>
