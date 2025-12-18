@@ -42,9 +42,7 @@ export default function CTASection() {
                         </div>
 
                         {/* Secondary CTA */}
-                        <button className="flex items-center justify-center rounded-lg h-14 px-8 bg-dark-surface border border-dark-border hover:border-primary/50 transition-all text-lg font-bold backdrop-blur-xl hover:bg-dark-elevated">
-                            <span>Ver Precios</span>
-                        </button>
+
                     </div>
 
                     {/* Trust badges / Features */}

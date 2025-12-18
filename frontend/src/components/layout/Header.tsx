@@ -46,7 +46,7 @@ export default function Header() {
                             <>
                                 <a href="#features" className="text-sm font-medium hover:text-primary transition-colors">Funciones</a>
                                 <a href="#pricing" className="text-sm font-medium hover:text-primary transition-colors">Precios</a>
-                                <a href="#about" className="text-sm font-medium hover:text-primary transition-colors">Sobre Nosotros</a>
+                                <Link to="/about" className="text-sm font-medium hover:text-primary transition-colors">Sobre Nosotros</Link>
                             </>
                         )}
 
@@ -116,9 +116,9 @@ export default function Header() {
                                 <a href="#pricing" className="block text-sm font-medium hover:text-primary transition-colors">
                                     Precios
                                 </a>
-                                <a href="#about" className="block text-sm font-medium hover:text-primary transition-colors">
+                                <Link to="/about" className="block text-sm font-medium hover:text-primary transition-colors">
                                     Sobre Nosotros
-                                </a>
+                                </Link>
                                 <Link to="/login" className="block text-sm font-medium hover:text-primary transition-colors">
                                     Iniciar Sesión
                                 </Link>

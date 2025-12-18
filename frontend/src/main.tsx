@@ -11,6 +11,7 @@ import Login from './pages/Login.tsx'
 import Layout from './components/layout/Layout.tsx'
 import LandingPage from './pages/LandingPage.tsx'
 import Register from './pages/Register.tsx'
+import AboutPage from './pages/About.tsx'
 import ProtectedRoute from './components/ProtectedRoute.tsx'
 import Dashboard from './pages/Dashboard.tsx'
 import Transactions from './pages/Transactions.tsx'
@@ -25,6 +26,7 @@ createRoot(document.getElementById('root')!).render(
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/about" element={<AboutPage />} />
             {/* Aquí irán las demás rutas */}
 
             <Route

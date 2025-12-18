@@ -71,14 +71,14 @@ export default function HeroSection() {
             case 'categories':
                 return (
                     <div className="space-y-4">
-                        <div className="flex items-center justify-between">
+                        <div className="flex flex-col sm:flex-row items-center sm:items-center sm:justify-between gap-1 text-center sm:text-left">
                             <div>
                                 <p className="text-sm text-text-dim">Panel de categorías</p>
                                 <h4 className="text-xl font-bold">Tus etiquetas a color</h4>
                             </div>
                             <span className="text-xs text-text-dim">Vista ficticia</span>
                         </div>
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                             {[
                                 { icon: '🍔', name: 'Foodies', color: '#ef4444', amount: '-$320' },
                                 { icon: '🚗', name: 'Movilidad', color: '#f97316', amount: '-$140' },
@@ -112,7 +112,7 @@ export default function HeroSection() {
             case 'payments':
                 return (
                     <div className="space-y-4">
-                        <div className="flex items-center justify-between">
+                        <div className="flex flex-col sm:flex-row items-center sm:justify-between gap-1 text-center sm:text-left">
                             <div>
                                 <p className="text-sm text-text-dim">Manejo de métodos</p>
                                 <h4 className="text-xl font-bold">Tarjetas y cuentas</h4>
@@ -144,7 +144,7 @@ export default function HeroSection() {
             case 'transactions':
                 return (
                     <div className="space-y-4">
-                        <div className="flex items-center justify-between">
+                        <div className="flex flex-col sm:flex-row items-center sm:justify-between gap-1 text-center sm:text-left">
                             <div>
                                 <p className="text-sm text-text-dim">Timeline</p>
                                 <h4 className="text-xl font-bold">Historial enriquecido</h4>
@@ -157,7 +157,7 @@ export default function HeroSection() {
                                 { icon: '🏋️', desc: 'Membresía gym', category: 'Bienestar', amount: '-$35.00', method: 'Nequi', date: 'Ayer · 6:10 PM' },
                                 { icon: '💼', desc: 'Pago freelance UX', category: 'Ingreso', amount: '+$980.00', method: 'Débito Bancolombia', date: 'Hace 2 días · 11:00 AM' },
                             ].map((tx) => (
-                                <div key={tx.desc} className="flex items-center justify-between rounded-xl border border-dark-border/60 bg-dark-elevated/60 px-4 py-3">
+                                <div key={tx.desc} className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-xl border border-dark-border/60 bg-dark-elevated/60 px-4 py-3">
                                     <div className="flex items-center gap-3">
                                         <div className="size-10 rounded-full bg-primary/10 flex items-center justify-center text-lg">
                                             {tx.icon}
@@ -179,7 +179,7 @@ export default function HeroSection() {
             case 'budgets':
                 return (
                     <div className="space-y-4">
-                        <div className="flex items-center justify-between">
+                        <div className="flex flex-col sm:flex-row items-center sm:justify-between gap-1 text-center sm:text-left">
                             <div>
                                 <p className="text-sm text-text-dim">Control proactivo</p>
                                 <h4 className="text-xl font-bold">Presupuestos mensuales</h4>
@@ -217,7 +217,7 @@ export default function HeroSection() {
             case 'telegram':
                 return (
                     <div className="space-y-4">
-                        <div className="flex items-center justify-between">
+                        <div className="flex flex-col sm:flex-row items-center sm:justify-between gap-1 text-center sm:text-left">
                             <div>
                                 <p className="text-sm text-text-dim">Bot Telegram</p>
                                 <h4 className="text-xl font-bold">@MonelyBot</h4>
@@ -246,7 +246,7 @@ export default function HeroSection() {
             default:
                 return (
                     <div className="space-y-4">
-                        <div className="flex items-center justify-between">
+                        <div className="flex flex-col sm:flex-row items-center sm:justify-between gap-1 text-center sm:text-left">
                             <div>
                                 <p className="text-sm text-text-dim">Agente financiero</p>
                                 <h4 className="text-xl font-bold">Insights impulsados por IA</h4>
@@ -410,9 +410,9 @@ export default function HeroSection() {
                 title="Así te ayudamos a dominar tus finanzas"
                 size="xl"
             >
-                <GlassCard className="p-6 border border-primary/30 bg-dark-surface/80 backdrop-blur space-y-5">
+                <GlassCard className="p-4 sm:p-6 border border-primary/30 bg-dark-surface/80 backdrop-blur space-y-5">
                     <div className="flex flex-col gap-3">
-                        <div className="flex items-center gap-3">
+                        <div className="flex flex-col sm:flex-row items-center sm:items-center gap-3 text-center sm:text-left">
                             <div className="size-12 rounded-xl bg-primary/20 flex items-center justify-center">
                                 <activeFeature.icon className={`size-6 ${activeFeature.accent}`} />
                             </div>
@@ -426,15 +426,15 @@ export default function HeroSection() {
                         </p>
                     </div>
 
-                    <div className="rounded-2xl border border-dark-border/60 bg-dark-elevated/60 p-5">
+                    <div className="rounded-2xl border border-dark-border/60 bg-dark-elevated/60 p-4 sm:p-5 min-h-[260px] sm:min-h-[300px]">
                         {renderExample(activeFeature.key)}
                     </div>
 
                     <div className="flex flex-col gap-4">
-                        <div className="flex items-center justify-between">
+                        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
                             <button
                                 onClick={handlePrev}
-                                className="inline-flex items-center gap-2 rounded-full border border-dark-border px-4 py-2 text-sm font-semibold hover:border-primary/50 transition-colors"
+                                className="inline-flex items-center gap-2 rounded-full border border-dark-border px-4 py-2 text-sm font-semibold hover:border-primary/50 transition-colors w-full sm:w-auto justify-center"
                             >
                                 <ArrowLeft className="size-4" />
                                 Anterior
@@ -444,14 +444,14 @@ export default function HeroSection() {
                             </span>
                             <button
                                 onClick={handleNext}
-                                className="inline-flex items-center gap-2 rounded-full border border-dark-border px-4 py-2 text-sm font-semibold hover:border-primary/50 transition-colors"
+                                className="inline-flex items-center gap-2 rounded-full border border-dark-border px-4 py-2 text-sm font-semibold hover:border-primary/50 transition-colors w-full sm:w-auto justify-center"
                             >
                                 Siguiente
                                 <ArrowRight className="size-4" />
                             </button>
                         </div>
 
-                        <div className="flex items-center justify-center gap-2">
+                        <div className="flex flex-wrap items-center justify-center gap-2">
                             {demoFeatures.map((feature, index) => (
                                 <button
                                     key={feature.key}
