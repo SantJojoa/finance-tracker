@@ -41,6 +41,15 @@ export default function Header() {
                                 <Link to="/transactions" className="text-sm font-medium hover:text-primary transition-colors">
                                     Transacciones
                                 </Link>
+                                <Link to="/categories" className="text-sm font-medium hover:text-primary transition-colors">
+                                    Categorías
+                                </Link>
+                                <Link to="/payment-methods" className="text-sm font-medium hover:text-primary transition-colors">
+                                    Métodos de pago
+                                </Link>
+                                <Link to="/admin" className="text-sm font-medium hover:text-primary transition-colors">
+                                    Administración
+                                </Link>
                             </>
                         ) : (
                             <>
@@ -100,6 +109,9 @@ export default function Header() {
                         {user ? (<>
                             <Link to='/dashboard' className="block text-sm font-medium hover:text-primary transition-colors">Dashboard</Link>
                             <Link to='/transactions' className="block text-sm font-medium hover:text-primary transition-colors">Transacciones</Link>
+                            <Link to='/categories' className="block text-sm font-medium hover:text-primary transition-colors">Categorías</Link>
+                            <Link to='/payment-methods' className="block text-sm font-medium hover:text-primary transition-colors">Métodos de pago</Link>
+                            <Link to='/admin' className="block text-sm font-medium hover:text-primary transition-colors">Administración</Link>
                             <div className="pt-2 border-t border-dark-border">
                                 <p className="text-xs text-text-dim mb-2">{user.email}</p>
                                 <button onClick={handleSignOut} className="flex items-center gap-2 text-sm font-medium text-red-500">

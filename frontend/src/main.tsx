@@ -16,6 +16,8 @@ import ProtectedRoute from './components/ProtectedRoute.tsx'
 import Dashboard from './pages/Dashboard.tsx'
 import Transactions from './pages/Transactions.tsx'
 import Categories from './pages/Cateogories.tsx'
+import PaymentMethods from './pages/PaymentMethods.tsx'
+import AdminPage from './pages/Admin.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -57,6 +59,24 @@ createRoot(document.getElementById('root')!).render(
               }
             >
 
+            </Route>
+            <Route
+              path='/payment-methods'
+              element={
+                <ProtectedRoute>
+                  <PaymentMethods />
+                </ProtectedRoute>
+              }
+            >
+            </Route>
+            <Route
+              path='/admin'
+              element={
+                <ProtectedRoute>
+                  <AdminPage />
+                </ProtectedRoute>
+              }
+            >
             </Route>
 
           </Route>
